@@ -54,7 +54,7 @@ def _subtract_noise_from_squared_rir(data, noise_level='auto'):
         noise_level = dsp._estimate_noise_energy(
             data,
             interval=[0.9, 1.0])
-    return (data.T - noise_level).T
+    return (data.T - noise_level.T).T
 
 
 def schroeder_integration(room_impulse_response, is_energy=False):

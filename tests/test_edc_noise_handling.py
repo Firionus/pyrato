@@ -45,6 +45,17 @@ def test_substracted_2D():
     npt.assert_allclose(actual, expected)
 
 
+def test_substracted_3D_expanded():
+    rir = np.expand_dims(genfromtxt(
+        os.path.join(test_data_path, 'analytic_rir_psnr50_2D.csv'),
+        delimiter=','), axis=0)
+    expected = np.expand_dims(genfromtxt(
+        os.path.join(test_data_path, 'substracted_2D.csv'),
+        delimiter=','), axis=0)
+    actual = enh._subtract_noise_from_squared_rir(rir**2)
+    npt.assert_allclose(actual, expected)
+
+
 def test_edc_truncation_1D():
     rir = pf.Signal(genfromtxt(
         os.path.join(test_data_path, 'analytic_rir_psnr50_1D.csv'),
